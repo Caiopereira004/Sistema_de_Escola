@@ -1,4 +1,6 @@
 import express from "express";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger.js";
 import authRoute from "./routes/authRoute.js";
 import disciplinaRoute from "./routes/disciplinaRoute.js";
 import notaRoute from "./routes/notaRoute.js";
@@ -15,5 +17,11 @@ app.use("/disciplinas", disciplinaRoute);
 app.use("/notas", notaRoute);
 app.use("/professores", professorRoute);
 app.use("/turmas", turmaRoute);
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec)
+);
 
 export default app;
